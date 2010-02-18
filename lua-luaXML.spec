@@ -10,7 +10,10 @@ Source0:	http://www.viremo.de/LuaXML/LuaXML_090910.zip
 URL:		http://www.viremo.de/LuaXML/
 BuildRequires:	lua51-devel
 BuildRequires:	pkg-config
+BuildRequires:	unzip
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%define		specflags	-fPIC
 
 %description
 LuaXML provides a minimal set of functions for the processing of XML
