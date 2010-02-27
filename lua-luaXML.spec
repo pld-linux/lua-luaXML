@@ -9,7 +9,7 @@ Source0:	http://www.viremo.de/LuaXML/LuaXML_090910.zip
 # Source0-md5:	de690d73a34bdc7d3b4f0307a40afd87
 URL:		http://www.viremo.de/LuaXML/
 BuildRequires:	lua51-devel
-BuildRequires:	pkg-config
+BuildRequires:	pkgconfig
 BuildRequires:	unzip
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -25,8 +25,8 @@ data in Lua.
 %build
 %{__make} \
 	CC="%{__cc}" \
-	CFLAGS="%{rpmcflags} $(pkg-config --cflags lua51)" \
-	LIBS="%{rpmldflags} $(pkg-config --libs lua51)"
+	CFLAGS="%{rpmcppflags} %{rpmcflags} $(pkg-config --cflags lua51)" \
+	LIBS="%{rpmcflags} %{rpmldflags} $(pkg-config --libs lua51)"
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -43,4 +43,4 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc readme.txt test.lua test.xml
 %{_datadir}%{luadir}/LuaXml.lua
-%{_libdir}%{luadir}/LuaXML_lib.so
+%attr(755,root,root) %{_libdir}%{luadir}/LuaXML_lib.so
